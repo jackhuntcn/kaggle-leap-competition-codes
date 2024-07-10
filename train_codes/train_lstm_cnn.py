@@ -143,18 +143,6 @@ train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE,
 valid_loader = DataLoader(valid_dataset, batch_size=BATCH_SIZE,
                           shuffle=False, num_workers=8)
 
-class TCNBlock(nn.Module):
-    def __init__(self, in_channels, out_channels, kernel_size, dilation):
-        super(TCNBlock, self).__init__()
-        self.conv = nn.Conv1d(in_channels, out_channels, kernel_size, 
-                              padding=(kernel_size-1) * dilation // 2, dilation=dilation)
-        self.bn = nn.BatchNorm1d(out_channels)
-        self.activation_fn = nn.GELU()
-
-    def forward(self, x):
-        return self.activation_fn(self.bn(self.conv(x)))
-
-
 class LeapModel(nn.Module):
     def __init__(self,
                  input_size,
