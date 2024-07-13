@@ -129,7 +129,8 @@ class NumpyDataset(Dataset):
         x = torch.from_numpy(arr_x).float()
         y = torch.from_numpy(self.y[index]).float()
 
-        return x, 
+        return x, y
+        
 train_dataset = NumpyDataset(x_train_seq, x_train_global, y_train)
 valid_dataset = NumpyDataset(x_valid_seq, x_valid_global, y_valid)
 
